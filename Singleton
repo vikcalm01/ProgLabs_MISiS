@@ -1,0 +1,22 @@
+class Singleton:
+    _instance = None  # Приватное статическое поле для хранения единственного экземпляра
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            # Создание единственного экземпляра
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self):
+        # Инициализация, если необходимо
+        self.value = "Пример данных"
+
+# Пример использования
+if __name__ == "__main__":
+    singleton1 = Singleton()
+    singleton2 = Singleton()
+
+    # Проверка, что оба экземпляра ссылаются на один и тот же объект
+    print(singleton1 is singleton2)  # True
+    singleton1.value = "Новое значение"
+    print(singleton2.value)  # Новое значение, так как это один объект
